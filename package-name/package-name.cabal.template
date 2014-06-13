@@ -1,0 +1,143 @@
+name: ${packageName}
+version: 0.0.0
+--synopsis: TODO
+--description: TODO
+--category: TODO
+author: ${author}
+maintainer: ${email}
+license: BSD3
+license-file: LICENSE.txt
+copyright: 2014 ${author} <${email}>
+build-type: Simple
+cabal-version: >= 1.18
+tested-with: GHC == 7.6.3 --, GHC == 7.8.2
+
+extra-source-files:
+  CHANGELOG.md
+  CONTRIBUTING.md
+  README.md
+
+library
+  build-depends: 
+    base
+  default-language:
+    Haskell2010
+  exposed-modules:
+    ${moduleName}
+    -- HASKELETON: New.Module
+  ghc-prof-options:
+    -auto-all
+    -prof
+  hs-source-dirs:
+    library
+
+executable ${packageName}
+  build-depends:
+    base
+    , ${packageName}
+  default-language:
+    Haskell2010
+  ghc-prof-options:
+    -auto-all
+    -prof
+  hs-source-dirs:
+    executable
+  main-is:
+    Main.hs
+
+test-suite tests
+  build-depends:
+      base
+    , ${packageName}
+    , hspec == 1.*
+    , HUnit
+    , QuickCheck
+  default-language:
+    Haskell2010
+  ghc-options:
+    -fhpc
+    -Wall
+     -Werror
+  hs-source-dirs:
+    library
+    test-suite
+  main-is:
+    Spec.hs
+  other-modules:
+    ${moduleName}
+    -- HASKELETON: New.Module
+    ${moduleName}Spec
+    -- HASKELETON: New.ModuleSpec
+  type:
+    exitcode-stdio-1.0
+
+test-suite examples
+  build-depends:
+    base
+    , Glob == 0.*
+    , doctest == 0.*
+  default-language:
+    Haskell2010
+  hs-source-dirs:
+    test-suite
+  main-is:
+    DocTest.hs
+  type:
+    exitcode-stdio-1.0
+
+test-suite coverage
+  build-depends:
+    base
+    , process == 1.*
+    , regex-compat == 0.*
+  default-language:
+      Haskell2010
+  hs-source-dirs:
+    test-suite
+  main-is:
+    HPC.hs
+  type:
+    exitcode-stdio-1.0
+
+test-suite documentation
+  build-depends:
+    base
+    , process == 1.*
+    , regex-compat == 0.*
+  default-language:
+    Haskell2010
+  hs-source-dirs:
+    test-suite
+  main-is:
+    Haddock.hs
+  type:
+    exitcode-stdio-1.0
+
+test-suite style
+  build-depends:
+    base
+    , hlint == 1.*
+  default-language:
+    Haskell2010
+  hs-source-dirs:
+    test-suite
+  main-is:
+    HLint.hs
+  type:
+    exitcode-stdio-1.0
+
+benchmark benchmarks
+  build-depends:
+    base
+    , ${packageName}
+    , criterion == 0.6.*
+    , hastache < 0.6
+    , statistics < 0.11
+  default-language:
+    Haskell2010
+  hs-source-dirs:
+    benchmark
+  main-is:
+    Bench.hs
+  type:
+    exitcode-stdio-1.0
