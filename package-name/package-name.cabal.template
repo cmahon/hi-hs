@@ -15,9 +15,8 @@ Category:                 TODO
 Build-type:               Simple
 Stability:                Experimental
 
-Source-Repository         head
-  type:                   git
-  location:               https://github.com/cmahon/${packageName}
+Tested-with:              GHC == 7.6.3
+                          GHC == 7.8.3
 
 --Data-files:
 --Data-dir:
@@ -26,13 +25,14 @@ Source-Repository         head
 --                        CONTRIBUTING.md
 --                        README.md
 
-Tested-with:              GHC == 7.6.3,
-                          GHC == 7.8.3
+Source-Repository         head
+  type:                   git
+  location:               https://github.com/cmahon/${packageName}
 
 Library
   hs-source-dirs:         library
   ghc-options:            -Wall -O2 -threaded -rtsopts
-  ghc-prof-opts:          -auto-all
+  ghc-prof-options:       -auto-all
   default-language:       Haskell2010
   exposed-modules:        ${moduleName}
   --other-modules:        TODO
@@ -43,7 +43,7 @@ Executable ${packageName}
   main-is:                Main.hs
   hs-source-dirs:         executable
   ghc-options:            -Wall -O2 -threaded -rtsopts
-  ghc-prof-opts:          -auto-all
+  ghc-prof-options:       -auto-all
   default-language:       Haskell2010
   build-depends:          base,
                           ${packageName}
